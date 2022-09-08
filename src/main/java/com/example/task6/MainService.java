@@ -65,6 +65,9 @@ public class MainService {
     }
 
     private String addChar(String property, Random random, ELocale locale, boolean isPhone) {
+        if (property.length() > 10) {
+            return replaceChar(property, random);
+        }
         StringBuilder str = new StringBuilder(property);
         int i = random.nextInt(property.length());
         char ch;
@@ -105,6 +108,9 @@ public class MainService {
         return str.deleteCharAt(i).insert(adjacentIndex, ch).toString();
     }
     private String deleteChar(String property, Random random) {
+        if (property.length() < 5) {
+            return replaceChar(property, random);
+        }
         StringBuilder str = new StringBuilder(property);
         int i = random.nextInt(property.length());
         return str.deleteCharAt(i).toString();
